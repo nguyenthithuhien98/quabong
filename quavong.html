@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mybox{
+            width: 500px;
+            margin: 20px auto;
+        }
+        .box{
+            width: 500px;
+            height: 200px;
+            background-color:lightblue;
+            border: 2px solid blue;
+             
+            position: relative;
+        }
+        .ball{
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: yellow;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="mybox">
+    <input type="button" value="play" onclick="play()">
+    <input type="button" value="stop" onclick="stop()">
+    <div class="box">
+        <div class="ball"></div>
+
+    </div>
+    <script>
+        var btop=0;
+        var bleft=0;
+        var x=5;
+        var y=5;
+        var ball=document.getElementsByClassName("ball")[0];
+        var box=document.getElementsByClassName("box")[0];
+        var timer;
+        function play(){
+            if(btop + ball.offsetHeight >= box.offsetHeight || btop<0){
+                y=-y;
+            }
+            btop+=y;
+            if(bleft+ball.offsetWidth >= box.offsetWidth|| bleft<0){
+                x=-x;
+            }
+            bleft+=x;
+            ball.style.top = btop + "px"
+            ball.style.left = bleft + "px"
+            timer = setTimeout("play()",100)
+
+
+        }
+        function stop(){
+            clearTimeout(timer)
+
+        }
+    </script>
+
+</div>
+</body>
+</html>
